@@ -302,11 +302,18 @@ function importarJSON(event) {
 }
 
 
-function showTab(name) {
+// Modifica la función en tu script.js para que quede así:
+window.showTab = function(name, event) {
+  // Si no se pasa el evento explícitamente, buscamos el global de window
+  const e = event || window.event; 
+  
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
+  
+  if (e && e.target) {
+    e.target.classList.add('active');
+  }
 }
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
